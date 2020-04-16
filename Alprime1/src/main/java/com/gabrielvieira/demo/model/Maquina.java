@@ -11,6 +11,7 @@ import java.util.Objects;
 public class Maquina {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_maquina")
     private Integer id_maquina;
 
@@ -23,13 +24,12 @@ public class Maquina {
     @Column(name = "capacidade_memoria")
     public Double capacidade_memoria;
 
-    @OneToMany(mappedBy = "maquina", cascade = CascadeType.REMOVE)
-    @JsonIgnore
+    @OneToMany(mappedBy = "maquina")
     public List<Registro> registros;
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "fk_localizacao",nullable = false)
+    @JoinColumn(name = "fk_localizacao")
     public Localizacao localizacao;
 
     public Maquina() {

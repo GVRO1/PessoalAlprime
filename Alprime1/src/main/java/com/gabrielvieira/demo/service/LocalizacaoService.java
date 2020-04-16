@@ -63,7 +63,7 @@ public class LocalizacaoService {
     public String deletarLocalizacao(Integer idLocalizacao) {
         Optional<Localizacao> localizacao = localizacaoRepository.findById(idLocalizacao);
         if (localizacao.isPresent()) {
-            String mensagem = String.format("Maquina com o id %d foi deletada", localizacao.get().getIdLocalizacao());
+            String mensagem = String.format("Maquina com o id %d foi deletada", localizacao.get().getId_localizacao());
             localizacaoRepository.delete(localizacao.get());
             return mensagem;
         } else {

@@ -2,7 +2,6 @@ package com.gabrielvieira.demo.dto;
 
 import com.gabrielvieira.demo.model.Localizacao;
 import com.gabrielvieira.demo.model.Maquina;
-import com.gabrielvieira.demo.model.Usuario;
 
 import java.util.List;
 import java.util.Objects;
@@ -22,20 +21,20 @@ public class LocalizacaoDto {
     }
 
     public LocalizacaoDto(Localizacao entity) {
-        this.id_localizacao = entity.getIdLocalizacao();
-        this.nome_localizacao = entity.getNomeLocalizacao();
-        this.tipo_linha = entity.getTipoLinha();
+        this.id_localizacao = entity.getId_localizacao();
+        this.nome_localizacao = entity.getNome_localizacao();
+        this.tipo_linha = entity.getTipo_linha();
         this.endereco = entity.getEndereco();
         this.maquinas = entity.getMaquinas();
     }
 
     public Localizacao toEntity(){
         Localizacao entity = new Localizacao();
-        entity.setIdLocalizacao(this.id_localizacao);
+        entity.setId_localizacao(this.id_localizacao);
         entity.setEndereco(this.endereco);
         entity.setMaquinas(this.maquinas);
-        entity.setNomeLocalizacao(this.nome_localizacao);
-        entity.setTipoLinha(this.tipo_linha);
+        entity.setNome_localizacao(this.nome_localizacao);
+        entity.setTipo_linha(this.tipo_linha);
         return entity;
     }
 

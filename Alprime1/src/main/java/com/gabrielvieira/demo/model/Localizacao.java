@@ -8,50 +8,51 @@ import java.util.Objects;
 @Table(name = "localizacao")
 public class Localizacao {
     @Id
-    @Column(name = "idLocalizacao")
-    private Integer idLocalizacao;
-    @Column(name = "nomeLocalizacao")
-    private String nomeLocalizacao;
-    @Column(name = "tipoLinha")
-    private String tipoLinha;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_localizacao")
+    private Integer id_localizacao;
+    @Column(name = "nome_localizacao")
+    private String nome_localizacao;
+    @Column(name = "tipo_linha")
+    private String tipo_linha;
     @Column(name = "endereco")
     private String endereco;
-    @OneToMany(mappedBy = "localizacao", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "localizacao")
     private List<Maquina> maquinas;
 
     public Localizacao() {
     }
 
-    public Localizacao(Integer idLocalizacao, String nomeLocalizacao, String tipoLinha, String endereco, List<Maquina> maquinas ) {
-    this.idLocalizacao = idLocalizacao;
-    this.nomeLocalizacao = nomeLocalizacao;
-    this.tipoLinha = tipoLinha;
-    this.endereco = endereco;
-    this.maquinas = maquinas;
+    public Localizacao(Integer id_localizacao, String nome_localizacao, String tipo_linha, String endereco, List<Maquina> maquinas) {
+        this.id_localizacao = id_localizacao;
+        this.nome_localizacao = nome_localizacao;
+        this.tipo_linha = tipo_linha;
+        this.endereco = endereco;
+        this.maquinas = maquinas;
     }
 
-    public Integer getIdLocalizacao() {
-        return idLocalizacao;
+    public Integer getId_localizacao() {
+        return id_localizacao;
     }
 
-    public void setIdLocalizacao(Integer idLocalizacao) {
-        this.idLocalizacao = idLocalizacao;
+    public void setId_localizacao(Integer id_localizacao) {
+        this.id_localizacao = id_localizacao;
     }
 
-    public String getNomeLocalizacao() {
-        return nomeLocalizacao;
+    public String getNome_localizacao() {
+        return nome_localizacao;
     }
 
-    public void setNomeLocalizacao(String nomeLocalizacao) {
-        this.nomeLocalizacao = nomeLocalizacao;
+    public void setNome_localizacao(String nome_localizacao) {
+        this.nome_localizacao = nome_localizacao;
     }
 
-    public String getTipoLinha() {
-        return tipoLinha;
+    public String getTipo_linha() {
+        return tipo_linha;
     }
 
-    public void setTipoLinha(String tipoLinha) {
-        this.tipoLinha = tipoLinha;
+    public void setTipo_linha(String tipo_linha) {
+        this.tipo_linha = tipo_linha;
     }
 
     public String getEndereco() {
@@ -66,35 +67,54 @@ public class Localizacao {
         return maquinas;
     }
 
-    public void setMaquinas(List<Maquina> maquinaRepositories) {
-        this.maquinas = maquinaRepositories;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Localizacao that = (Localizacao) o;
-        return Objects.equals(idLocalizacao, that.idLocalizacao) &&
-                Objects.equals(nomeLocalizacao, that.nomeLocalizacao) &&
-                Objects.equals(tipoLinha, that.tipoLinha) &&
-                Objects.equals(endereco, that.endereco) &&
-                Objects.equals(maquinas, that.maquinas);
+    public void setMaquinas(List<Maquina> maquinas) {
+        this.maquinas = maquinas;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idLocalizacao, nomeLocalizacao, tipoLinha, endereco, maquinas);
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.id_localizacao);
+        hash = 53 * hash + Objects.hashCode(this.nome_localizacao);
+        hash = 53 * hash + Objects.hashCode(this.tipo_linha);
+        hash = 53 * hash + Objects.hashCode(this.endereco);
+        hash = 53 * hash + Objects.hashCode(this.maquinas);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Localizacao other = (Localizacao) obj;
+        if (!Objects.equals(this.nome_localizacao, other.nome_localizacao)) {
+            return false;
+        }
+        if (!Objects.equals(this.tipo_linha, other.tipo_linha)) {
+            return false;
+        }
+        if (!Objects.equals(this.endereco, other.endereco)) {
+            return false;
+        }
+        if (!Objects.equals(this.id_localizacao, other.id_localizacao)) {
+            return false;
+        }
+        if (!Objects.equals(this.maquinas, other.maquinas)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "Localizacao{" +
-                "idLocalizacao=" + idLocalizacao +
-                ", nomeLocalizacao='" + nomeLocalizacao + '\'' +
-                ", tipoLinha='" + tipoLinha + '\'' +
-                ", endereco='" + endereco + '\'' +
-                ", maquinas=" + maquinas +
-                '}';
+        return "Localizacao{" + "id_localizacao=" + id_localizacao + ", nome_localizacao=" + nome_localizacao + ", tipo_linha=" + tipo_linha + ", endereco=" + endereco + ", maquinas=" + maquinas + '}';
     }
+
 }

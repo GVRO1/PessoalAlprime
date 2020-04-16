@@ -9,5 +9,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface RegistroRepository extends JpaRepository<Registro,Integer> {
-    List<Registro> findByDataHoraBetween(String dataComeco, String dataFinal);
+//    List<Registro> findByData_horaBetween(String dataComeco, String dataFinal);
 }

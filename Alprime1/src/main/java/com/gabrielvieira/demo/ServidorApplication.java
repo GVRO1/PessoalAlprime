@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
-public class DemoApplication extends SpringBootServletInitializer {
-    //private static final Logger log = LoggerFactory.getLogger(DemoApplication.class);
+public class ServidorApplication extends SpringBootServletInitializer {
+    //private static final Logger log = LoggerFactory.getLogger(ServidorApplication.class);
 
     //private Thread threadMonitoramento = new Thread(this::atualizarDados);
     //boolean play = true;
@@ -26,7 +26,7 @@ public class DemoApplication extends SpringBootServletInitializer {
     //  }
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(ServidorApplication.class, args);
         //  List<Registro> registros = new ArrayList<>();
         // ClientApi clientApi = new ClientApi();
         //MaquinaAtual maquinaAtual = new MaquinaAtual();

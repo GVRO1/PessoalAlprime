@@ -1,7 +1,6 @@
 package com.gabrielvieira.demo.service;
 
 import com.gabrielvieira.demo.dto.MaquinaDto;
-import com.gabrielvieira.demo.model.Localizacao;
 import com.gabrielvieira.demo.model.Maquina;
 import com.gabrielvieira.demo.repository.LocalizacaoRepository;
 import com.gabrielvieira.demo.repository.MaquinaRepository;
@@ -49,7 +48,7 @@ public class MaquinaService {
     }
 
     public MaquinaDto criarMaquina(MaquinaDto maquinaDto){
-        if (maquinaRepository.findById(maquinaDto.getIdMaquina()).isPresent()) {
+        if (maquinaRepository.findById(maquinaDto.getId_maquina()).isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não foi possível criar a maquina pois ela já existe!");
         }else {
             MaquinaDto maquinaSalva = new MaquinaDto(maquinaRepository.save(maquinaDto.toEntity()));

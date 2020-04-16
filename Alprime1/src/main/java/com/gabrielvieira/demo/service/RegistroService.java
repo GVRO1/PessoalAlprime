@@ -38,13 +38,13 @@ public class RegistroService {
             }
             return registroDtos;
         }
-        public List<RegistroDto> procurarRegistroData(String dataComeco, String dataFinal){
-            List<RegistroDto> registroDtos = new ArrayList<>();
-            for (Registro registro : registroRepository.findByDataHoraBetween(dataComeco,dataFinal)) {
-                registroDtos.add(new RegistroDto(registro));
-            }
-            return registroDtos;
-        }
+//        public List<RegistroDto> procurarRegistroData(String dataComeco, String dataFinal){
+//            List<RegistroDto> registroDtos = new ArrayList<>();
+//            for (Registro registro : registroRepository.findByData_horaBetween(dataComeco,dataFinal)) {
+//                registroDtos.add(new RegistroDto(registro));
+//            }
+//            return registroDtos;
+//        }
 
         public RegistroDto procurarRegistroId(Integer idRegistro) {
             return registroRepository.findById(idRegistro)

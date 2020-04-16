@@ -34,16 +34,16 @@ import java.util.List;
         public RegistroDto getRegistro(@PathVariable(value = "idRegistro") Integer idRegistro) {
             return registroService.procurarRegistroId(idRegistro);
         }
-        @GetMapping("/data")
-        public List<RegistroDto> getRegistro(@RequestParam(value = "comeco", required = false) String dataComeco,
-                                            @RequestParam(value = "fim", required = false) String dataFinal) {
-                return registroService.procurarRegistroData(dataComeco,dataFinal);
-        }
+//        @GetMapping("/data")
+//        public List<RegistroDto> getRegistro(@RequestParam(value = "comeco", required = false) String dataComeco,
+//                                            @RequestParam(value = "fim", required = false) String dataFinal) {
+//                return registroService.procurarRegistroData(dataComeco,dataFinal);
+//        }
 
 
         @PostMapping
-        public RegistroDto criarRegistro(@RequestBody RegistroDto RegistroDto) {
-            return registroService.criarRegistro(RegistroDto);
+        public RegistroDto criarRegistro(@RequestBody RegistroDto registroDto) {
+            return registroService.criarRegistro(registroDto);
         }
 
         @DeleteMapping("/{idRegistro}")
@@ -51,7 +51,7 @@ import java.util.List;
             return registroService.deletarRegistro(idRegistro);
         }
         @PutMapping("/{idRegistro}")
-        public RegistroDto atualizarRegistro(@RequestBody RegistroDto RegistroDto) {
-            return registroService.atualizarRegistro(RegistroDto);
+        public RegistroDto atualizarRegistro(@RequestBody RegistroDto registroDto) {
+            return registroService.atualizarRegistro(registroDto);
         }
     }

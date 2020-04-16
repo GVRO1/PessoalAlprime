@@ -15,101 +15,137 @@ public class MaquinaDto {
 
     public MaquinaDto(Maquina entity) {
         if (entity != null){
-            this.idMaquina = entity.getId_maquina();
+            this.id_maquina = entity.getId_maquina();
             this.registros = entity.getRegistros();
-            this.capacidadeMemoria = entity.getCapacidade_memoria();
-            this.fkLocalizacao = entity.getLocalizacao().getIdLocalizacao();
-            this.sistemaOperacional = entity.getSistema_operacional();
-            this.tipoProcessador = entity.getTipo_processador();
+            this.capacidade_memoria = entity.getCapacidade_memoria();
+            this.localizacao = entity.getLocalizacao();
+            this.sistema_operacional = entity.getSistema_operacional();
+            this.tipo_processador = entity.getTipo_processador();
         }
     }
-    public MaquinaDto(Integer idMaquina, String tipoProcessador, String sistemaOperacional, Double capacidadeMemoria, Integer fkLocalizacao, List<Registro> registros) {
-        this.idMaquina = idMaquina;
-        this.tipoProcessador = tipoProcessador;
-        this.sistemaOperacional = sistemaOperacional;
-        this.capacidadeMemoria = capacidadeMemoria;
-        this.fkLocalizacao = fkLocalizacao;
-        this.registros = registros;
-    }
 
-    private Integer idMaquina;
-    private String tipoProcessador;
-    private String sistemaOperacional;
-    private Double capacidadeMemoria;
-    private Integer fkLocalizacao;
+    private Integer id_maquina;
+    private String tipo_processador;
+    private String sistema_operacional;
+    private Double capacidade_memoria;
+    private Localizacao localizacao;
     private List<Registro> registros;
 
     public MaquinaDto(Object o) {
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MaquinaDto that = (MaquinaDto) o;
-        return Objects.equals(idMaquina, that.idMaquina) &&
-                Objects.equals(tipoProcessador, that.tipoProcessador) &&
-                Objects.equals(sistemaOperacional, that.sistemaOperacional) &&
-                Objects.equals(capacidadeMemoria, that.capacidadeMemoria) &&
-                Objects.equals(fkLocalizacao, that.fkLocalizacao) &&
-                Objects.equals(registros, that.registros);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idMaquina, tipoProcessador, sistemaOperacional, capacidadeMemoria, fkLocalizacao, registros);
-    }
-
     public Maquina toEntity() {
         Maquina maquina = new Maquina();
-        Localizacao localizacao = new Localizacao();
-        maquina.setId_maquina(this.idMaquina);
-        maquina.setCapacidade_memoria(this.capacidadeMemoria);
-        maquina.setSistema_operacional(this.sistemaOperacional);
-        maquina.setTipo_processador(this.tipoProcessador);
-        localizacao.setIdLocalizacao(this.fkLocalizacao);
-        maquina.setLocalizacao(localizacao);
+        maquina.setId_maquina(this.id_maquina);
+        maquina.setCapacidade_memoria(this.capacidade_memoria);
+        maquina.setSistema_operacional(this.sistema_operacional);
+        maquina.setTipo_processador(this.tipo_processador);
+        maquina.setLocalizacao(this.localizacao);
         maquina.setRegistros(this.registros);
         return  maquina;
     }
 
-    public Integer getIdMaquina() {
-        return idMaquina;
+    public MaquinaDto(Integer id_maquina, String tipo_processador, String sistema_operacional, Double capacidade_memoria, Localizacao localizacao, List<Registro> registros) {
+        this.id_maquina = id_maquina;
+        this.tipo_processador = tipo_processador;
+        this.sistema_operacional = sistema_operacional;
+        this.capacidade_memoria = capacidade_memoria;
+        this.localizacao = localizacao;
+        this.registros = registros;
     }
 
-    public void setIdMaquina(Integer idMaquina) {
-        this.idMaquina = idMaquina;
+    public Integer getId_maquina() {
+        return id_maquina;
     }
 
-    public String getTipoProcessador() {
-        return tipoProcessador;
+    public void setId_maquina(Integer id_maquina) {
+        this.id_maquina = id_maquina;
     }
 
-    public void setTipoProcessador(String tipoProcessador) {
-        this.tipoProcessador = tipoProcessador;
+    public String getTipo_processador() {
+        return tipo_processador;
     }
 
-    public String getSistemaOperacional() {
-        return sistemaOperacional;
+    public void setTipo_processador(String tipo_processador) {
+        this.tipo_processador = tipo_processador;
     }
 
-    public void setSistemaOperacional(String sistemaOperacional) {
-        this.sistemaOperacional = sistemaOperacional;
+    public String getSistema_operacional() {
+        return sistema_operacional;
     }
 
-    public Double getCapacidadeMemoria() {
-        return capacidadeMemoria;
+    public void setSistema_operacional(String sistema_operacional) {
+        this.sistema_operacional = sistema_operacional;
     }
 
-    public void setCapacidadeMemoria(Double capacidadeMemoria) {
-        this.capacidadeMemoria = capacidadeMemoria;
+    public Double getCapacidade_memoria() {
+        return capacidade_memoria;
     }
 
-    public Integer getFkLocalizacao() {
-        return fkLocalizacao;
+    public void setCapacidade_memoria(Double capacidade_memoria) {
+        this.capacidade_memoria = capacidade_memoria;
     }
 
-    public void setFkLocalizacao(Integer fkLocalizacao) {
-        this.fkLocalizacao = fkLocalizacao;
+    public Localizacao getLocalizacao() {
+        return localizacao;
     }
+
+    public void setLocalizacao(Localizacao localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public List<Registro> getRegistros() {
+        return registros;
+    }
+
+    public void setRegistros(List<Registro> registros) {
+        this.registros = registros;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.id_maquina);
+        hash = 67 * hash + Objects.hashCode(this.tipo_processador);
+        hash = 67 * hash + Objects.hashCode(this.sistema_operacional);
+        hash = 67 * hash + Objects.hashCode(this.capacidade_memoria);
+        hash = 67 * hash + Objects.hashCode(this.localizacao);
+        hash = 67 * hash + Objects.hashCode(this.registros);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MaquinaDto other = (MaquinaDto) obj;
+        if (!Objects.equals(this.tipo_processador, other.tipo_processador)) {
+            return false;
+        }
+        if (!Objects.equals(this.sistema_operacional, other.sistema_operacional)) {
+            return false;
+        }
+        if (!Objects.equals(this.id_maquina, other.id_maquina)) {
+            return false;
+        }
+        if (!Objects.equals(this.capacidade_memoria, other.capacidade_memoria)) {
+            return false;
+        }
+        if (!Objects.equals(this.localizacao, other.localizacao)) {
+            return false;
+        }
+        if (!Objects.equals(this.registros, other.registros)) {
+            return false;
+        }
+        return true;
+    }
+
+   
 }
