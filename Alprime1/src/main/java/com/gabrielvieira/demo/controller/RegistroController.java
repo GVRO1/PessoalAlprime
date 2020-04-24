@@ -1,8 +1,5 @@
 package com.gabrielvieira.demo.controller;
 
-
-import com.gabrielvieira.demo.dto.LocalizacaoDto;
-import com.gabrielvieira.demo.dto.MaquinaDto;
 import com.gabrielvieira.demo.dto.RegistroDto;
 import com.gabrielvieira.demo.service.RegistroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +21,11 @@ import java.util.List;
         public List<RegistroDto> getTodasRegistro() {
             return registroService.procurarRegistroTodas();
         }
+        
+         @GetMapping("/quantidade")
+         public Integer getQuantidade() {
+         return registroService.quantidadeRegistros();
+    }
 
         @GetMapping("/maquina/{idMaquina}")
         public List<RegistroDto> getTodasRegistro(@PathVariable(value = "idMaquina") Integer idMaquina) {
@@ -39,7 +41,6 @@ import java.util.List;
 //                                            @RequestParam(value = "fim", required = false) String dataFinal) {
 //                return registroService.procurarRegistroData(dataComeco,dataFinal);
 //        }
-
 
         @PostMapping
         public RegistroDto criarRegistro(@RequestBody RegistroDto registroDto) {

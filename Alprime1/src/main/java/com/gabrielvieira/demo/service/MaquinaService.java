@@ -4,6 +4,7 @@ import com.gabrielvieira.demo.dto.MaquinaDto;
 import com.gabrielvieira.demo.model.Maquina;
 import com.gabrielvieira.demo.repository.LocalizacaoRepository;
 import com.gabrielvieira.demo.repository.MaquinaRepository;
+import com.gabrielvieira.demo.repository.RegistroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ import java.util.Optional;
 public class MaquinaService {
     @Autowired
     private MaquinaRepository maquinaRepository;
+    @Autowired
+    private RegistroRepository registroRepository;
     @Autowired
     private LocalizacaoRepository localizacaoRepository;
 
@@ -46,6 +49,14 @@ public class MaquinaService {
         return maquinaDtos;
 
     }
+    
+     public MaquinaDto procurarMaquinaSerial(String serial) {
+       return maquinaRepository.maquinaSerial(serial)
+                .map(MaquinaDto::new)
+                .orElse(null);
+    }
+    
+    
 
     public MaquinaDto criarMaquina(MaquinaDto maquinaDto){
         if (maquinaRepository.findById(maquinaDto.getId_maquina()).isPresent()) {
@@ -67,8 +78,30 @@ public class MaquinaService {
         }
     }
 
-    public MaquinaDto atualizarMaquina(MaquinaDto maquinaAtualizada){
-        maquinaRepository.save(maquinaAtualizada.toEntity());
-        return maquinaAtualizada;
+    public MaquinaDto atualizarMaquina(Integer idMaquina,MaquinaDto maquina){
+        Optional<Maquina> maquinaSalva = maquinaRepository.findById(idMaquina);
+        if(maquinaSalva.isPresent()){
+        Maquina maquinaEntity = maquinaSalva.get();
+//        List<Registro> registroOptional = registroRepository.registroMaquina(idMaquina);
+        maquinaEntity.setId_maquina(maquina.getId_maquina());
+        maquinaEntity.setTipo_processador(maquina.getTipo_processador());
+        maquinaEntity.setCapacidade_memoria(maquina.getCapacidade_memoria());
+        maquinaEntity.setSistema_operacional(maquina.getSistema_operacional());
+        maquinaEntity.setStatus(maquina.isStatus());
+        maquinaEntity.setFabricante(maquina.getFabricante());
+        maquinaEntity.setModelo(maquina.getModelo());
+        maquinaEntity.setRam_total(maquina.getRam_total());
+        maquinaEntity.setHostname(maquina.getHostname());
+        maquinaEntity.setLocalizacao(maquina.getLocalizacao());
+        maquinaEntity.setNumero_serial(maquina.getNumero_serial());
+        
+        maquinaRepository.save(maquinaEntity);
+        return new MaquinaDto(maquinaEntity);
+    }
+        return null;
+    }
+    
+    public Integer quantidadeMaquina(){
+        return maquinaRepository.quantidadeMaquinas();
     }
 }

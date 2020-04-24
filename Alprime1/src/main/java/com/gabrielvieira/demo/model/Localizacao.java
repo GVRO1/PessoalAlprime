@@ -1,5 +1,6 @@
 package com.gabrielvieira.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -7,6 +8,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "localizacao")
 public class Localizacao {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_localizacao")
@@ -17,18 +19,26 @@ public class Localizacao {
     private String tipo_linha;
     @Column(name = "endereco")
     private String endereco;
+    @Column(name = "total_maquina")
+    private Integer total_maquina;
     @OneToMany(mappedBy = "localizacao")
     private List<Maquina> maquinas;
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "fk_usuario")
+    private Usuario usuario;
 
     public Localizacao() {
     }
 
-    public Localizacao(Integer id_localizacao, String nome_localizacao, String tipo_linha, String endereco, List<Maquina> maquinas) {
+    public Localizacao(Integer id_localizacao, String nome_localizacao, String tipo_linha, String endereco, Integer total_maquina, List<Maquina> maquinas, Usuario usuario) {
         this.id_localizacao = id_localizacao;
         this.nome_localizacao = nome_localizacao;
         this.tipo_linha = tipo_linha;
         this.endereco = endereco;
+        this.total_maquina = total_maquina;
         this.maquinas = maquinas;
+        this.usuario = usuario;
     }
 
     public Integer getId_localizacao() {
@@ -71,14 +81,32 @@ public class Localizacao {
         this.maquinas = maquinas;
     }
 
+    public Integer getTotal_maquina() {
+        return total_maquina;
+    }
+
+    public void setTotal_maquina(Integer total_maquina) {
+        this.total_maquina = total_maquina;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id_localizacao);
-        hash = 53 * hash + Objects.hashCode(this.nome_localizacao);
-        hash = 53 * hash + Objects.hashCode(this.tipo_linha);
-        hash = 53 * hash + Objects.hashCode(this.endereco);
-        hash = 53 * hash + Objects.hashCode(this.maquinas);
+        hash = 79 * hash + Objects.hashCode(this.id_localizacao);
+        hash = 79 * hash + Objects.hashCode(this.nome_localizacao);
+        hash = 79 * hash + Objects.hashCode(this.tipo_linha);
+        hash = 79 * hash + Objects.hashCode(this.endereco);
+        hash = 79 * hash + Objects.hashCode(this.total_maquina);
+        hash = 79 * hash + Objects.hashCode(this.maquinas);
+        hash = 79 * hash + Objects.hashCode(this.usuario);
         return hash;
     }
 
@@ -106,7 +134,13 @@ public class Localizacao {
         if (!Objects.equals(this.id_localizacao, other.id_localizacao)) {
             return false;
         }
+        if (!Objects.equals(this.total_maquina, other.total_maquina)) {
+            return false;
+        }
         if (!Objects.equals(this.maquinas, other.maquinas)) {
+            return false;
+        }
+        if (!Objects.equals(this.usuario, other.usuario)) {
             return false;
         }
         return true;
@@ -114,7 +148,7 @@ public class Localizacao {
 
     @Override
     public String toString() {
-        return "Localizacao{" + "id_localizacao=" + id_localizacao + ", nome_localizacao=" + nome_localizacao + ", tipo_linha=" + tipo_linha + ", endereco=" + endereco + ", maquinas=" + maquinas + '}';
+        return "Localizacao{" + "id_localizacao=" + id_localizacao + ", nome_localizacao=" + nome_localizacao + ", tipo_linha=" + tipo_linha + ", endereco=" + endereco + ", total_maquina=" + total_maquina + ", maquinas=" + maquinas + ", usuario=" + usuario + '}';
     }
 
 }

@@ -65,7 +65,7 @@ public class RegistroService {
         public String deletarRegistro(Integer idRegistro){
             Optional<Registro> registro = registroRepository.findById(idRegistro);
             if(registro.isPresent()){
-                String mensagem = String.format("Registro com o id %d foi deletado",registro.get().getIdRegistro());
+                String mensagem = String.format("Registro com o id %d foi deletado",registro.get().getId_registro());
                 registroRepository.delete(registro.get());
                 return mensagem;
             }else{
@@ -77,4 +77,7 @@ public class RegistroService {
             registroRepository.save(registroDtoAtualizado.toEntity());
             return registroDtoAtualizado;
         }
+        public Integer quantidadeRegistros(){
+        return registroRepository.quantidadeRegistros();
+    }
     }

@@ -20,6 +20,16 @@ public class MaquinaController {
     public List<MaquinaDto> getTodasMaquinas() {
         return maquinaService.procurarMaquinaTodas();
     }
+    
+    @GetMapping("/quantidade")
+    public Integer getQuantidade() {
+        return maquinaService.quantidadeMaquina();
+    }
+    
+    @GetMapping("/{serial}")
+    public MaquinaDto getMaquinasSerial(@PathVariable(value = "serial") String serial) {
+        return maquinaService.procurarMaquinaSerial(serial);
+    }
 
     @GetMapping("/{idMaquina}")
     public MaquinaDto getMaquina(@PathVariable(value = "idMaquina") Integer idMaquina) {
@@ -41,7 +51,7 @@ public class MaquinaController {
         return maquinaService.deletarMaquina(idMaquina);
     }
     @PutMapping("/{idMaquina}")
-    public MaquinaDto atualizarMaquina(@RequestBody MaquinaDto maquinaDto) {
-        return maquinaService.atualizarMaquina(maquinaDto);
+    public MaquinaDto atualizarMaquina(@PathVariable Integer idMaquina,@RequestBody MaquinaDto maquinaDto) {
+        return maquinaService.atualizarMaquina(idMaquina,maquinaDto);
     }
 }
